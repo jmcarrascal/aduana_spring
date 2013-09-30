@@ -1,0 +1,106 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:ws="http://jax-ws.dev.java.net/spring/core"
+       xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+         http://jax-ws.dev.java.net/spring/core
+        http://jax-ws.dev.java.net/spring/core.xsd
+        http://jax-ws.dev.java.net/spring/servlet
+        http://jax-ws.dev.java.net/spring/servlet.xsd">
+        
+    	<!-- Importa el data source -->
+	<import resource="applicationContextHibernate.xml" />
+    
+	<!-- Hibernate session factory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+ 	 			<prop key="hibernate.default_schema">sueldos</prop>  
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+<!--				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->				
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.use_sql_comments">true</prop>				
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				
+				<prop key="hibernate.format_sql">true</prop>				
+				<prop key="hibernate.generate_statistics">true</prop>
+				
+				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.Parametrizacion</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConcepto</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoAplicacion</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoCalcExp</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoCalculo</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoCalculoTipo</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoCaracter</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoDatos</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoForPago</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoFrecuencia</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoGrupo</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoGrupoDetalle</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoLey</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoModalidad</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoPlantilla</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoPlantillaDetalle</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueConceptoTipo</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueModuloCoeficiente</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueRegimenLaboral</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueValorBase</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueValorBaseDetalle</value>
+				<value>ar.gob.gba.sg.dpsit.sueldos.model.SueValorBaseTipo</value>
+			</list>
+		</property>
+	</bean>
+    
+    <context:annotation-config  />
+	
+	<context:component-scan base-package="ar.gob.gba.sg.dpsit.sueldos" />
+
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+    
+     
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<mvc:annotation-driven />
+    
+    
+    
+    
+    <bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+    
+</beans>
