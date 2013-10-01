@@ -28,6 +28,18 @@
 	<artifactId>bcpkix-jdk15on</artifactId>
 	<version>1.48</version>
 </dependency> 
+
+<dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>4.0.2.GA</version>
+      </dependency>
+
+<dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>6.0</version>
+      </dependency>
             
 	<dependency>
 	<groupId>com.itextpdf</groupId>

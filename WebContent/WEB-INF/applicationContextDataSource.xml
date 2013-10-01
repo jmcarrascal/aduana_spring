@@ -70,7 +70,7 @@
 			<value>org.postgresql.Driver</value>
 		</property>
 		<property name="jdbcUrl">
-			<value>jdbc:postgresql://localhost:5432/jee6qs</value>
+			<value>jdbc:postgresql://localhost:5432/sueldos</value>
 		</property>
 		<property name="minPoolSize">
 			<value>1</value>

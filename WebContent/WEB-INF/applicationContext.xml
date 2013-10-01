@@ -26,9 +26,9 @@
         http://jax-ws.dev.java.net/spring/servlet.xsd">
         
     	<!-- Importa el data source -->
-	<import resource="applicationContextHibernate.xml" />
+<!-- 	<import resource="applicationContextHibernate.xml" /> -->
     
-<!--     <jee:jndi-lookup expected-type="javax.sql.DataSource" id="dataSource" jndi-name="java:jboss/datasources/jee6qsDS"/> -->
+    <jee:jndi-lookup expected-type="javax.sql.DataSource" id="dataSource" jndi-name="java:jboss/datasources/jee6qsDS"/>
     
 	<!-- Hibernate session factory -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -43,7 +43,7 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.use_sql_comments">true</prop>				
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				
 				<prop key="hibernate.format_sql">true</prop>				
 				<prop key="hibernate.generate_statistics">true</prop>
@@ -51,12 +51,22 @@
 				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
 			</props>
 		</property>
-<!-- 		<property name="annotatedClasses"> -->
-<!-- 			<list> -->
-<!-- 				<value>bo.gob.aduana.operadores.model.Parametrizacion</value> -->
-<!-- 				<value>bo.gob.aduana.operadores.model.Usuario</value> -->
-<!-- 			</list> -->
-<!-- 		</property>	 -->
+		<property name="annotatedClasses">
+			<list>
+				<value>bo.gob.aduana.operadores.model.Parametrizacion</value>
+				<value>bo.gob.aduana.operadores.model.Usuario</value>
+				<value>bo.gob.aduana.operadores.model.Aduana</value>
+				<value>bo.gob.aduana.operadores.model.Barrio</value>
+				<value>bo.gob.aduana.operadores.model.Ciudad</value>
+				<value>bo.gob.aduana.operadores.model.Departamento</value>
+				<value>bo.gob.aduana.operadores.model.Domicilio</value>
+				<value>bo.gob.aduana.operadores.model.Member</value>
+				<value>bo.gob.aduana.operadores.model.Operador</value>
+				<value>bo.gob.aduana.operadores.model.OperadorPorAduana</value>
+				<value>bo.gob.aduana.operadores.model.OperadorJuridico</value>
+				<value>bo.gob.aduana.operadores.model.OperadorNatural</value>				
+			</list>
+		</property>	
 		
 	</bean>
     
