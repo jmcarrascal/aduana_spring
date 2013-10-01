@@ -11,11 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JacksonAnnotation;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import bo.gob.aduana.operadores.util.DateUtil;
 
 @Entity
 @Table(name="OPERADOR_JURIDICO")
@@ -29,6 +32,9 @@ public class OperadorJuridico extends Operador{
 	
 	@NotNull
 	private String razonSocial;
+	
+	@Transient
+	private String formatFechaConstitucion;
 	
 	@ManyToOne
 	private Domicilio domicilioFisico;
@@ -111,4 +117,14 @@ public class OperadorJuridico extends Operador{
 				+ ", cantidadEmpleados=" + cantidadEmpleados+"]";
 	}
 
+	public String getFormatFechaConstitucion() {
+		formatFechaConstitucion = DateUtil.getFormattedDate(fechaConstitucion);
+		return formatFechaConstitucion;
+	}
+
+	public void setFormatFechaConstitucion(String formatFechaConstitucion) {
+		this.formatFechaConstitucion = formatFechaConstitucion;
+	}
+
+	
 }

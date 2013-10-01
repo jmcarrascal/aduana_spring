@@ -15,7 +15,7 @@ public class Domicilio {
 	@GeneratedValue
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne	
 	@NotNull
 	private Barrio barrio;
 	

@@ -44,7 +44,6 @@ public class UsuarioServiceImpl implements UsuarioService{
 			jsonResult = new JsonResult(true,"Nombre Usuario: " + usuario.getNombreUsuario());
 		}
 		return jsonResult;
-
 		
 	}
 	

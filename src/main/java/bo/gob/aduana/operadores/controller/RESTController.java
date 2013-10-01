@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bo.gob.aduana.operadores.model.Barrio;
 import bo.gob.aduana.operadores.model.JsonResult;
 import bo.gob.aduana.operadores.model.OperadorJuridico;
+import bo.gob.aduana.operadores.model.OperadorNatural;
 import bo.gob.aduana.operadores.model.Usuario;
 import bo.gob.aduana.operadores.services.OperadorService;
 import bo.gob.aduana.operadores.services.UsuarioService;
@@ -49,7 +51,24 @@ public class RESTController {
 	public @ResponseBody List<OperadorJuridico> getOperadorJuridicoAll() {		
 		List<OperadorJuridico> operadorList = operadorService.geAll();
 		return operadorList;
+	} 
+	
+	@RequestMapping(value="/rest/usuario/getOperadorNaturalAll", method = RequestMethod.GET)
+	public @ResponseBody List<OperadorNatural> getOperadorNaturalAll() {		
+		List<OperadorNatural> operadorList = operadorService.getOperadorNaturalAll();
+		return operadorList; 
 	}
+	
+	@RequestMapping(value="/rest/operador/new", method = RequestMethod.POST)
+	public @ResponseBody void setNewOperadorJuridico(OperadorJuridico operadorJuridico) {		
+		 operadorService.newOperadorJuridico(operadorJuridico);
+	}
+	
+	@RequestMapping(value="/rest/barrio/getAll", method = RequestMethod.GET)
+	public @ResponseBody List<Barrio> getBarrioAll() {		
+		List<Barrio> barrioList = operadorService.getBarrioAll();
+		return barrioList;
+	} 
 	
 	
 }
