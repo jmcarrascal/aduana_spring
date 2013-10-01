@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bo.gob.aduana.operadores.model.JsonResult;
 import bo.gob.aduana.operadores.model.OperadorJuridico;
 import bo.gob.aduana.operadores.model.Usuario;
 import bo.gob.aduana.operadores.services.OperadorService;
@@ -37,6 +38,11 @@ public class RESTController {
 	@RequestMapping(value="/rest/usuario/new", method = RequestMethod.POST)
 	public @ResponseBody void setNewUser(Usuario usuario) {		
 		 usuarioService.newUser(usuario);
+	}
+	
+	@RequestMapping(value="/rest/usuario/validate", method = RequestMethod.POST)
+	public @ResponseBody JsonResult validateUser(Usuario usuario) {		
+		 return usuarioService.validateUser(usuario);
 	}
 	
 	@RequestMapping(value="/rest/usuario/getOperadorJuridicoAll", method = RequestMethod.GET)

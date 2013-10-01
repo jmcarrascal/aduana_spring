@@ -2,6 +2,7 @@ package bo.gob.aduana.operadores.services;
 
 import java.util.List;
 
+import bo.gob.aduana.operadores.model.JsonResult;
 import bo.gob.aduana.operadores.model.Usuario;
 
 
@@ -15,5 +16,7 @@ public interface UsuarioService {
 	public List<Usuario> geAll();
 
 	public void newUser(Usuario usuario);
+
+	public JsonResult validateUser(Usuario usuarioIn);
 
 }

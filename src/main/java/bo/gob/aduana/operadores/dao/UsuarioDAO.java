@@ -6,6 +6,8 @@ import bo.gob.aduana.operadores.model.Usuario;
 
 
 public interface UsuarioDAO extends GenericDAO<Usuario> {
+
+	Usuario getUserbyUserPass(Usuario usuario);
 	
 
 	

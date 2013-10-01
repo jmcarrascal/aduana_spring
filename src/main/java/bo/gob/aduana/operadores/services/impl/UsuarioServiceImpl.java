@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import bo.gob.aduana.operadores.dao.UsuarioDAO;
+import bo.gob.aduana.operadores.model.JsonResult;
 import bo.gob.aduana.operadores.model.Usuario;
 import bo.gob.aduana.operadores.services.UsuarioService;
 
@@ -31,6 +32,20 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public void newUser(Usuario usuario) {
 		usuarioDAO.save(usuario);	
+	}
+
+	
+	public JsonResult validateUser(Usuario usuarioIn) {
+		JsonResult jsonResult = new JsonResult(false,null);
+		Usuario usuario = usuarioDAO.getUserbyUserPass(usuarioIn);
+		if (usuario == null){
+			jsonResult = new JsonResult(false,"Error en la autenticacion");
+		}else{
+			jsonResult = new JsonResult(true,"Nombre Usuario: " + usuario.getNombreUsuario());
+		}
+		return jsonResult;
+
+		
 	}
 	
 }
